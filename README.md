@@ -8,17 +8,12 @@
 ## crop face
 画像から顔のみを抽出するよ!
 ```sh
-wordpress
-├wp-admin
-｜｜  about.php
-｜｜  admin.php
-｜｜  admin-footer.php
-｜├css
-｜└images
-├wp-content
-｜｜   index.php
-｜｜   db.php
-｜├cache
-｜└themes
-└wp-includes
+anime_img
+├1970
+｜｜ hoge.png
+｜｜ fuga.png
+｜｜ piyo.png
+├1971
+｜　
+└2017
 ```
