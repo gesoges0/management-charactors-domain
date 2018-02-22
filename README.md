@@ -48,7 +48,8 @@ hoge.pngは以下のような画像になっているよ.
 - メガネ(ON, OFF)
 
 を採用. これに年代というパラメータを加えたものを作る.
-
+下のようなGUIを作った(制作途中).
+<img src="img/set_label_GUI.png" alt="set_label_GUI" title="set_label_GUI"><br>
 
 
 
