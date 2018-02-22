@@ -32,6 +32,8 @@ $ python face_crop.py
 hoge.pngは以下のような画像になっているよ.
 <img src="img/57569.png" alt="元画像" title="元画像"><br>
 抽出した顔画像は以下のようになっているよ.
+5人いるけど4人しか抽出されていないのは一定の大きさ以下は画質が悪いデータを学習データになるべく入れたくないため,
+一定のサイズ以下の画像は保存しないようにしているからだよ.
 <img src="img/croped_face.png" alt="croped" title="croped"><br>
 
 ## 顔パーツのパラメータ設定
