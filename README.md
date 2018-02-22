@@ -21,13 +21,16 @@ anime_img
 └2017
 ```
 次に以下のコードを実行する.
+アニメ画像のカスケード分類器は<a href="https://github.com/nagadomi/lbpcascade_animeface">ココ</a>からダウンロードしてね.
 ```
 $ git clone git@github.com:elasticnet12345/make_girls.git
 $ cd make_girls/src
+$ wget https://raw.githubusercontent.com/nagadomi/lbpcascade_animeface/master/lbpcascade_animeface.xml
 $ python face_crop.py 
 ```
 hoge.pngは以下のような画像になっているよ.
 <img src="img/57569.png" alt="元画像" title="元画像"><br>
+抽出した顔画像は以下のようになっているよ.
 <img src="img/croped_face.png" alt="croped" title="croped"><br>
 
 
