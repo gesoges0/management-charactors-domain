@@ -1,5 +1,6 @@
 # make_girls
 女の子の画像を自動生成するためのプロジェクトだよ!
+<a href="http://make.girls.moe/#/">make.girls.more</a>を参考にしているよ.
 
 プロジェクトの流れ
 + 顔画像の抽出/ 保存
