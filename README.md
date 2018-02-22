@@ -7,6 +7,7 @@
 
 ## crop face
 画像から顔のみを抽出するよ!
+```sh
 wordpress
 ├wp-admin
 ｜｜  about.php
@@ -20,3 +21,4 @@ wordpress
 ｜├cache
 ｜└themes
 └wp-includes
+```
