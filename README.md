@@ -52,7 +52,7 @@ hoge.pngは以下のような画像になっているよ.
 ```
 $ python set_label_GUI.py --dir=data/2007 
 ```
-<img src="img/set_label_GUI.png" alt="set_label_GUI" title="set_label_GUI"><br>
+<img src="img/set_label_GUI2.png" alt="set_label_GUI" title="set_label_GUI"><br>
 
 
 
