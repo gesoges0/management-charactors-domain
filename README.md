@@ -49,6 +49,9 @@ hoge.pngは以下のような画像になっているよ.
 
 を採用. これに年代というパラメータを加えたものを作る.
 下のようなGUIを作った(制作途中).
+```
+$ python set_label_GUI.py 
+```
 <img src="img/set_label_GUI.png" alt="set_label_GUI" title="set_label_GUI"><br>
 
 
