@@ -4,6 +4,7 @@ import os
 from PIL import Image, ImageTk
 import tkinter 
 import argparse
+import tkinter.ttk
 
 
 color_list = ["金", "茶", "赤", "橙", "桃", "黒", "青", "紫", "緑", "白", "銀", "黄"]
@@ -32,15 +33,6 @@ def JapaneseColor2EnglshColor(string):
     elif string == color_list[10]:return "silver"
     elif string == color_list[11]:return "yellow"
 
-
-
-# class Application(tkinter.Frame):
-#     def __init__(self, master=None):
-#         # 継承, フレームを宣言
-#         super().__init__(master)
-#         # 継承したフレームを配置
-#         self.pack()
-        # 画像の指定
 class Application():
     def __init__(self):
         self.root = tkinter.Tk()
@@ -70,18 +62,18 @@ class Application():
         """
         self.path_img = path_src_png_imgs[self.pointer]
     
-    def set_obj_img(self):
+    def set_obj_img(self, size=(300, 320)):
         """ self.obj_img をセットする
             self.obj_img は self.path_img を画像化したオブジェクトである
         """
-        self.obj_img = Image.open(self.path_img).resize((300,320))
+        self.obj_img = Image.open(self.path_img).resize(size)
         self.image = ImageTk.PhotoImage(self.obj_img)
 
     def create_widgets(self):
         """ Applicationのウィジェットを作成する
         """
         # 左側フレーム ======================================================================
-        self.frame_left = tkinter.LabelFrame(self.root, text="left frame")
+        self.frame_left = tkinter.ttk.LabelFrame(self.root, text="left frame")
         self.frame_left.pack(side=tkinter.LEFT, fill=tkinter.BOTH)
         # PATH表示フレーム
         self.frame_file_name = tkinter.Frame(self.frame_left)
@@ -93,11 +85,20 @@ class Application():
         self.label_img = tkinter.Label(self.frame_img, image=self.image, bg="blue")
         self.label_img.pack(fill=tkinter.BOTH)
         self.frame_img.pack(side=tkinter.TOP, fill=tkinter.BOTH)
-        # 仮フレーム
-        self.frame_kari = tkinter.Frame(self.frame_left)
-        self.frame_kari.pack(side=tkinter.TOP, fill=tkinter.BOTH)
-        self.label_kari = tkinter.Label(self.frame_kari, text="kari_label", bg="red")
-        self.label_kari.pack(fill=tkinter.BOTH)
+        # 進捗フレーム
+        self.frame_progress = tkinter.ttk.Frame(self.frame_left)
+        self.frame_progress.pack(side=tkinter.TOP, fill=tkinter.BOTH)
+
+        self.frame_progress_left = tkinter.ttk.Frame(self.frame_progress)
+        self.frame_progress_left.pack(side=tkinter.LEFT, fill=tkinter.BOTH)
+        self.label_progress = tkinter.ttk.Progressbar(self.frame_progress_left, orient="horizontal",\
+                                                        mode="determinate", maximum=self.limit_pointer-1,\
+                                                        value=self.pointer, variable=self.pointer, length=265)
+        self.label_progress.pack(side=tkinter.LEFT, fill=tkinter.BOTH)
+        self.frame_progress_right = tkinter.Frame(self.frame_progress)
+        self.frame_progress_right.pack(side=tkinter.RIGHT, fill=tkinter.BOTH)
+        self.label_progress_num = tkinter.Label(self.frame_progress, text="{}/{}".format(self.pointer+1, self.limit_pointer), bg="yellow")
+        self.label_progress_num.pack(side=tkinter.RIGHT)
         # ===================================================================================
         
         # 右側フレーム =======================================================================
@@ -160,6 +161,9 @@ class Application():
         
         # ===================================================================================
     def clicked(self):
+        # 次のファイルが無かったら終了する
+        if self.pointer + 1 == self.limit_pointer:
+            exit()
         # 値の更新
         print(self.path_img)
         print("選択された髪の色:",hair_color_list[self.v100.get()])
@@ -174,8 +178,9 @@ class Application():
         self.set_path_img()
         self.set_obj_img()
         self.label_img.configure(image=self.image)
-        
- 
+        self.label_progress.configure(value=self.pointer)
+        self.label_progress_num.configure(text="{}/{}".format(self.pointer+1, self.limit_pointer))
+        # = tkinter.Label(self.frame_progress, text="{}/{}".format(self.pointer+1, self.limit_pointer), bg="yellow")
 
 def check_png(name_file):
     """ src_dirの１ファイルに対して, 
@@ -202,7 +207,7 @@ if __name__ == "__main__":
     
     # - * - * - get paths of images from src_dir - * - * -  
     path_src_dir = args.src_dir
-    path_src_png_imgs = ["./{}/{}".format(path_src_dir,name_file) for name_file in os.listdir(path_src_dir) if check_png(name_file)]
+    path_src_png_imgs = [os.path.join(path_src_dir,name_file) for name_file in os.listdir(path_src_dir) if check_png(name_file)]
     print(path_src_png_imgs)
     
     # - * - * - * - * - start application - * - * - * - * - 
