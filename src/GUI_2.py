@@ -4,6 +4,7 @@ import os
 from PIL import Image, ImageTk
 import tkinter 
 import argparse
+import json
 import tkinter.ttk
 
 
@@ -33,6 +34,12 @@ def JapaneseColor2EnglshColor(string):
     elif string == color_list[10]:return "silver"
     elif string == color_list[11]:return "yellow"
 
+def JapaneseColor2EnglshHair(string):
+    if string == "ロング":return "long"
+    elif string == "ショート": return "short"
+    elif string == "ドリル":return "drill"
+    elif string == "ポニテ":return "ponite"
+
 class Application():
     def __init__(self):
         self.root = tkinter.Tk()
@@ -53,8 +60,8 @@ class Application():
     def increment_pointer(self):
         """ self.pointer をインクリメントする
         """
-        if self.pointer + 1 != self.limit_pointer:
-            self.pointer += 1
+        #if self.pointer + 1 != self.limit_pointer:
+        self.pointer += 1
         
     def set_path_img(self):
         """ self.path_img をセットする
@@ -161,10 +168,9 @@ class Application():
         
         # ===================================================================================
     def clicked(self):
-        # 次のファイルが無かったら終了する
-        if self.pointer + 1 == self.limit_pointer:
-            exit()
+
         # 値の更新
+        print("=="*20)
         print(self.path_img)
         print("選択された髪の色:",hair_color_list[self.v100.get()])
         print("選択された髪型:", hair_type_list[self.v101.get()])
@@ -172,15 +178,33 @@ class Application():
         print("選択された開口:", opend_mouse[self.v103.get()])
         print("選択された帽子:", flags_hat[self.v104.get()])
         print("選択されたメガネ:", flags_glasses[self.v105.get()])
-        print("=="*20)
-        self.label_file_name.configure(text="path = {}".format(self.path_img), bg="red")
-        self.increment_pointer()
-        self.set_path_img()
-        self.set_obj_img()
+        _, name_file = os.path.split(self.path_img)
+        dict_img = {"file_img":self.path_img,"hair_color":JapaneseColor2EnglshColor(hair_color_list[self.v100.get()]),\
+                    "hair_type":JapaneseColor2EnglshHair(hair_type_list[self.v101.get()]),"eye_color":JapaneseColor2EnglshColor(eye_color_list[self.v102.get()]),\
+                    "opend_mouse":opend_mouse[self.v103.get()], "flags_hat":flags_hat[self.v104.get()], "flags_glasses":flags_glasses[self.v105.get()]}
+        name_json = name_file.replace(".png", ".json")
+        path_json = os.path.join(args.dst_dir, name_json)
+        print("name_json:", name_json)
+        print("path_json:", path_json)
+        # json を出力
+        with open(path_json, "w") as f:
+            json.dump(dict_img, f, indent=2)
+        # ラベルのセッティング
+        self.label_file_name.configure(text="path = {}".format(self.path_img))
+        self.increment_pointer()# increment
+        if self.pointer  == self.limit_pointer:
+            exit()
+        self.set_path_img()# set path
+        self.set_obj_img()# set object 
         self.label_img.configure(image=self.image)
         self.label_progress.configure(value=self.pointer)
-        self.label_progress_num.configure(text="{}/{}".format(self.pointer+1, self.limit_pointer))
-        # = tkinter.Label(self.frame_progress, text="{}/{}".format(self.pointer+1, self.limit_pointer), bg="yellow")
+        self.label_progress_num.configure(text="{}/{}".format(self.pointer+1, self.limit_pointer))        
+        # 次のファイルが無かったら終了する
+        print("進捗:{}%".format(self.pointer/ self.limit_pointer))
+                
+
+
+
 
 def check_png(name_file):
     """ src_dirの１ファイルに対して, 
