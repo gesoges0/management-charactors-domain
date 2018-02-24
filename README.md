@@ -40,19 +40,18 @@ hoge.pngは以下のような画像になっているよ.
 <a href="http://make.girls.moe/#/">本家</a>で使われているパラメータのうち, <br>
 - 髪の色(金, 茶, 黒, 青, 桃, 紫, 緑, 赤, 銀, 白, 橙)
 - 髪型(ロング, ショート, ツインテ, ドリルヘア, ポニテ) 
-- 目の色(青, 赤, 茶, 緑, 紫, 黄, 桃, 黒, 橙, オッドアイ)
-- 笑顔(ON, OFF)
+- 目の色(青, 赤, 茶, 緑, 紫, 黄, 桃, 黒, 橙)
 - 開口(ON, OFF)
 - 帽子(ON, OFF)
-- リボン(ON, OFF)
 - メガネ(ON, OFF)
 
-を採用. これに年代というパラメータを加えたものを作る.
-下のようなGUIを作った(制作途中).
+顔パーツを登録する操作を単純化するために下のようなGUIを作った(制作途中).
+各画像に対して引数--dst_dirで指定したディレクトリにJSONファイルを吐く.
+ある程度JSONファイルが溜まったら, CSVに統合しデータベースをつくる.
 ```
 $ python set_label_GUI.py --dir=data/2007 
 ```
-<img src="img/set_label_GUI2.png" alt="set_label_GUI" title="set_label_GUI"><br>
+<img src="img/GUI.png" alt="set_label_GUI" title="set_label_GUI"><br>
 
 
 
