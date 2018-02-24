@@ -39,6 +39,7 @@ def JapaneseColor2EnglshHair(string):
     elif string == "ショート": return "short"
     elif string == "ドリル":return "drill"
     elif string == "ポニテ":return "ponite"
+    elif string == "ツインテ":return "twinte"
 
 class Application():
     def __init__(self):
@@ -162,13 +163,40 @@ class Application():
         self.frame_confirmation.pack(side=tkinter.BOTTOM, fill=tkinter.BOTH)
         self.button1 = tkinter.Button(self.frame_confirmation, text="この内容で登録", command=self.clicked)
         self.button1.pack(fill=tkinter.BOTH)
-        self.button2 = tkinter.Button(self.frame_confirmation, text="削除")
+        self.button2 = tkinter.Button(self.frame_confirmation, text="削除", command=self.clicked_button2)
         self.button2.pack(fill=tkinter.BOTH)
 
         
         # ===================================================================================
-    def clicked(self):
+    def clicked_button2(self):
+        """ 削除ボタン
+        """
+        print("=="*20)
+        if args.trush_dir == None:
+            print("rm", self.path_img)
+            os.system('rm "{}"'.format(self.path_img))
+        else:
+            if not os.path.exits(args.trush_dir):
+                os.mkdir(args.trush_dir)
+            print("drop trush box:".format(self.path_img))
+            os.system('mv "{}" "{}"'.format(self.path_img, args.trush_dir))
+        # 次の画像にポインタを移す
+        self.increment_pointer()# increment
+        if self.pointer  == self.limit_pointer:
+            exit()
+        self.set_path_img()# set path
+        self.set_obj_img()# set object
+        # ラベルのセッティング
+        self.label_file_name.configure(text="path = {}".format(self.path_img))
+        self.label_progress.configure(value=self.pointer)
+        self.label_progress_num.configure(text="{}/{}".format(self.pointer+1, self.limit_pointer))
+        self.label_img.configure(image=self.image)
+        # 次のファイルが無かったら終了する
+        print("進捗:{}%".format(self.pointer/ self.limit_pointer))
 
+    def clicked(self):
+        """ 登録ボタン
+        """
         # 値の更新
         print("=="*20)
         print(self.path_img)
@@ -208,8 +236,6 @@ class Application():
                 
 
 
-
-
 def check_png(name_file):
     """ src_dirの１ファイルに対して, 
         1. それがPNGか？
@@ -219,7 +245,9 @@ def check_png(name_file):
         output: 
     """
     name, ext = os.path.splitext(name_file)
-    if ext!=".png":return False
+    if ext!=".png":return False 
+    path_json_file = os.path.join(args.dst_dir, name_file.replace(".png", ".json"))
+    if os.path.exists(path_json_file):return False
     return True
     
 
@@ -228,6 +256,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--src_dir', type=str, default=None)
     parser.add_argument('--dst_dir', type=str, default=None)
+    parser.add_argument('--trush_dir', type=str, default=None)
     args = parser.parse_args()
     if args.src_dir==None and args.dst_dir==None:
         print("please specify --src_dir and --dst_dir")
@@ -236,6 +265,7 @@ if __name__ == "__main__":
     # - * - * - get paths of images from src_dir - * - * -  
     path_src_dir = args.src_dir
     path_src_png_imgs = [os.path.join(path_src_dir,name_file) for name_file in os.listdir(path_src_dir) if check_png(name_file)]
+    if not len(path_src_png_imgs):exit("NULL LIST!!")
     print(path_src_png_imgs)
     
     # - * - * - * - * - start application - * - * - * - * - 
