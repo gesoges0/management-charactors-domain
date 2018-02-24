@@ -52,7 +52,7 @@ hoge.pngは以下のような画像になっているよ.
 $ python set_label_GUI.py --src_dir=data --dst_dir=json_output
 ```
 <img src="img/GUI.png" alt="set_label_GUI" title="set_label_GUI"><br>
-<img src="img/GUI_operation.png" alt="operation GUI" title="operation GUI"><br>
+<img src="img/s_GUI_operation.png" alt="operation GUI" title="operation GUI"><br>
 
 
 
