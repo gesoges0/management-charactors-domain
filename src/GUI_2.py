@@ -189,16 +189,20 @@ class Application():
         # json を出力
         with open(path_json, "w") as f:
             json.dump(dict_img, f, indent=2)
-        # ラベルのセッティング
-        self.label_file_name.configure(text="path = {}".format(self.path_img))
+        
+        # 次の画像にポインタを移す
         self.increment_pointer()# increment
         if self.pointer  == self.limit_pointer:
             exit()
         self.set_path_img()# set path
         self.set_obj_img()# set object 
-        self.label_img.configure(image=self.image)
+        
+        # ラベルのセッティング
+        self.label_file_name.configure(text="path = {}".format(self.path_img))
         self.label_progress.configure(value=self.pointer)
-        self.label_progress_num.configure(text="{}/{}".format(self.pointer+1, self.limit_pointer))        
+        self.label_progress_num.configure(text="{}/{}".format(self.pointer+1, self.limit_pointer))
+        self.label_img.configure(image=self.image)
+            
         # 次のファイルが無かったら終了する
         print("進捗:{}%".format(self.pointer/ self.limit_pointer))
                 
