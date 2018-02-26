@@ -8,19 +8,11 @@
 
 ## 顔画像の抽出
 画像から顔のみを抽出するよ!
-wikipediaの放映年代を調べて, yahoo検索から1アニメについて約20の画像をクローリングしておく.
+wikipediaのアニメ一覧を調べて, yahoo検索から1アニメについて約20の画像をクローリングしておく.
+あとyahoo検索でアニメの名前を検索するより, pixivをクローリングしたほうが良質な画像が得られることが最近わかった.
+<a href="http://www.mathgram.xyz/entry/scraping/pixiv">ココ</a>を参考にして!
 データの公開が恐らくダメだと思うので自分でやってくだせえ.
-ディレクトリ構成は以下のようにして画像をクローリングしてね.
-```sh
-anime_img
-├1970
-｜｜ hoge.png
-｜｜ fuga.png
-｜｜ piyo.png
-├1971
-｜　
-└2017
-```
+
 次に以下のコードを実行する.
 アニメ画像のカスケード分類器は<a href="https://github.com/nagadomi/lbpcascade_animeface">ココ</a>からダウンロードしてね.
 ```
@@ -53,7 +45,31 @@ $ python set_label_GUI.py --src_dir=data --dst_dir=json_output
 ```
 <img src="img/GUI.png" alt="set_label_GUI" title="set_label_GUI"><br>
 <img src="img/s_GUI_operation.png" alt="operation GUI" title="operation GUI"><br>
-
+一通り終わったら, 顔画像が入っているディレクトリとGUIで顔パーツの情報を入力してJSONを作った出力先のディレクトリの2つを以下のようなディレクトリ構成でdata直下に入れる.
+GUIの操作が時間がかかるため途中でも後からデータを追加できるので, そのときはコードをいじって!
+```sh
+anime_img
+└ data
+  └ dcgan_upload_directory
+     ├ face_images 
+     |    | hoge.png
+     |    | fuga.png
+     └ face_images_output
+          | hoge.json
+          └ fuga.json
+```
+このJSONをCSVファイルに統合する.
+```sh
+$ python union.py
+```
+次に, 学習データセットの作成を行う.
+例えば金髪のロングヘアー, 緑目の女の子を生成したいと思ったら, 以下のように実行する.
+引数--dataset_directoryは, data直下に今まで追加してきた画像について引数で指定した条件の女の子のみがコピーされる.
+```sh
+$ python crate_dataset.py --height_size=256 --width_size=256 --hair_color="gold" --hair_type="long" --eye_color="green" --dataset_directory dataset1
+```
+これを実行すると"data/dataset1"に以下のようなファイルが出力される.
+<img src="img/gold_hair_green_eye.png" alt="gold_green" title="金髪ロング緑目"><br>
 
 
 
