@@ -50,7 +50,7 @@ $ python set_label_GUI.py --src_dir=data --dst_dir=json_output
 一通り終わったら, 顔画像が入っているディレクトリとGUIで顔パーツの情報を入力してJSONを作った出力先のディレクトリの2つを以下のようなディレクトリ構成でdata直下に入れる.
 GUIの操作が時間がかかるため途中でも後からデータを追加できるので, そのときはコードをいじって!
 ```sh
-anime_img
+make_girl_kit
 └ data
   └ dcgan_upload_directory
      ├ face_images 
