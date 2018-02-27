@@ -2,7 +2,7 @@ import os
 import scipy.misc
 import numpy as np
 from my_model import DCGAN
-from utils import pp, visualize, to_json, show_all_variables
+from my_utils import pp, visualize, to_json, show_all_variables
 import argparse
 import tensorflow as tf
 
@@ -67,8 +67,8 @@ if __name__ == "__main__":
     default_input_height = 108
     default_output_height = 64
     default_input_fname_pattern = "*.jpg"
-    default_checkpoint_dir = os.path.join("..","checkpoint")
-    default_sample_dir = os.path.join("..", "samples")
+    default_checkpoint_dir = "checkpoint"
+    default_sample_dir = "samples"
     default_train = False
     default_crop = False
     default_generate_test_images = 50

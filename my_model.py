@@ -223,7 +223,7 @@ class DCGAN(object):
       if np.mod(counter, 100) == 1:
         save_images(samples, image_manifold_size(samples.shape[0]),'./{}/train_{:02d}_{:04d}.png'.format(config.sample_dir, epoch, idx))
         print("[Sample] d_loss: %.8f, g_loss: %.8f" % (d_loss, g_loss)) 
-        #else:
+      
         try:
           samples, d_loss, g_loss = self.sess.run(
             [self.sampler, self.d_loss, self.g_loss],
@@ -232,8 +232,7 @@ class DCGAN(object):
                 self.inputs: sample_inputs,
             },
           )
-          save_images(samples, image_manifold_size(samples.shape[0]),
-                './{}/train_{:02d}_{:04d}.png'.format(config.sample_dir, epoch, idx))
+          save_images(samples, image_manifold_size(samples.shape[0]),'./{}/train_{:02d}_{:04d}.png'.format(config.sample_dir, epoch, idx))
           print("[Sample] d_loss: %.8f, g_loss: %.8f" % (d_loss, g_loss)) 
         except:
           print("one pic error!...")
