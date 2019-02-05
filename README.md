@@ -76,7 +76,7 @@ $ python crate_dataset.py --height_size=256 --width_size=256 --hair_color="gold"
 
 ## 参考
 最後は, 適当なGANで自動生成してみてね. CycleGANやStarGANなどを試すと面白い結果になると思うよ！
-今回はdcganで画像を生成してみたよ！
+DCGANでやる場合は例えばこんな感じに動かしてね！
 ```sh
 $ git clone https://github.com/carpedm20/DCGAN-tensorflow.git
 $ cd DCGAN-tensorflow
@@ -84,8 +84,3 @@ $ mkdir data
 $ mv ../make_girl_kit/data/dataset1 ./data/
 $ python main.py --input_height 128 --input_width 128 --output_height 48 --output_width 48 --dataset dataset1 --crop --train --epoch 300 --input_fname_pattern "*.png"
 ```
-
-今回は金髪のみのデータセットなどで実行していないが, サンプルはこのようなものになる.
-<img src="img/dcgan01.png" alt="dcgan_sample" title="dcgan_sample"><br>
-<img src="img/dcgan02.png" alt="dcgan_sample" title="dcgan_sample"><br>
-<img src="img/dcgan03.png" alt="dcgan_sample" title="dcgan_sample"><br>
