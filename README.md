@@ -73,6 +73,9 @@ $ python crate_dataset.py --height_size=256 --width_size=256 --hair_color="gold"
 これを実行すると"data/dataset1"に以下のようなファイルが出力される.
 <img src="img/gold_hair_green_eye.png" alt="gold_green" title="金髪ロング緑目"><br>
 
+
+## 参考
+最後は, 適当なGANで自動生成してみてね. CycleGANやStarGANなどを試すと面白い結果になると思うよ！
 次にdcganで画像を作成する.
 ```sh
 $ git clone https://github.com/carpedm20/DCGAN-tensorflow.git
