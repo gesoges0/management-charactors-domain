@@ -1,5 +1,5 @@
 # Arangement-Girls-Domain
-女の子の画像どドメインを整理するためのプロジェクトだよ！
+女の子の画像のドメインを整理するためのプロジェクトだよ！
 <a href="http://make.girls.moe/#/">make.girls.more</a>を参考にしているよ.
 
 プロジェクトの流れ
