@@ -76,7 +76,7 @@ $ python crate_dataset.py --height_size=256 --width_size=256 --hair_color="gold"
 
 ## 参考
 最後は, 適当なGANで自動生成してみてね. CycleGANやStarGANなどを試すと面白い結果になると思うよ！
-次にdcganで画像を作成する.
+今回はdcganで画像を生成してみたよ！
 ```sh
 $ git clone https://github.com/carpedm20/DCGAN-tensorflow.git
 $ cd DCGAN-tensorflow
