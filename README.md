@@ -18,8 +18,8 @@ wikipediaのアニメ一覧を調べて, yahoo検索から1アニメについて
 画像から顔のみを抽出するよ!
 アニメ画像のカスケード分類器は<a href="https://github.com/nagadomi/lbpcascade_animeface">ココ</a>からダウンロードしてね.
 ```
-$ git clone git@github.com:elasticnet12345/make_girls.git
-$ cd make_girls/src
+$ git clone git@github.com:elasticnet12345/Arangement-Girls-Domain.git
+$ cd Arangement-Girls-Domain/src
 $ wget https://raw.githubusercontent.com/nagadomi/lbpcascade_animeface/master/lbpcascade_animeface.xml
 $ python face_crop.py 
 ```
