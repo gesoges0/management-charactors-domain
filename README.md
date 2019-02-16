@@ -1,6 +1,5 @@
 # Arangement-Girls-Domain
-女の子の画像のドメインを整理するためのプロジェクトだよ！
-<a href="http://make.girls.moe/#/">make.girls.more</a>を参考にしているよ.
+女の子の画像のドメインを整理するためのプロジェクトです.
 
 プロジェクトの流れ
 + 画像の収集
@@ -12,22 +11,23 @@ wikipediaのアニメ一覧を調べて, yahoo検索から1アニメについて
 <a href="https://github.com/elasticnet12345/classification-year-of-anime/tree/master/crawler">以前に作ったスクリプト</a>で試してみてね.
 あとyahoo検索でアニメの名前を検索するより, pixivをクローリングしたほうが良質な画像が得られることが最近わかった.
 <a href="http://www.mathgram.xyz/entry/scraping/pixiv">ココ</a>を参考にして!
-データの公開が恐らくダメだと思うので自分でやってくだせえ.
+データの公開が恐らくダメだと思うので自分でやってください.
 
 ## 顔画像の抽出
-画像から顔のみを抽出するよ!
-アニメ画像のカスケード分類器は<a href="https://github.com/nagadomi/lbpcascade_animeface">ココ</a>からダウンロードしてね.
+画像から顔領域のみを抽出します.
+アニメ画像のカスケード分類器は<a href="https://github.com/nagadomi/lbpcascade_animeface">ココ</a>からダウンロードしてください.
+最近はCNNで自分で学習させたほうが良い精度の矩形回帰ができるかもしれません.
 ```
 $ git clone git@github.com:elasticnet12345/Arangement-Girls-Domain.git
 $ cd Arangement-Girls-Domain/src
 $ wget https://raw.githubusercontent.com/nagadomi/lbpcascade_animeface/master/lbpcascade_animeface.xml
 $ python face_crop.py 
 ```
-hoge.pngは以下のような画像になっているよ.
+画像hoge.pngに対しての操作を説明します.
 <img src="img/57569.png" alt="元画像" title="元画像"><br>
-抽出した顔画像は以下のようになっているよ.
+この画像に顔抽出器をかけると以下の画像郡のように画像中の顔領域の画像郡が出力されます.
 5人いるけど4人しか抽出されていないのは一定の大きさ以下は画質が悪いデータを学習データになるべく入れたくないため,
-一定のサイズ以下の画像は保存しないようにしているからだよ.
+一定のサイズ以下の画像は保存しないようにしているからです.
 <img src="img/croped_face.png" alt="croped" title="croped"><br>
 
 ## 顔パーツのパラメータ設定
