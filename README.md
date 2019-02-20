@@ -9,9 +9,6 @@
 ## 画像の収集
 wikipediaのアニメ一覧を調べて, yahoo検索から1アニメについて約20の画像をクローリングしておく.
 <a href="https://github.com/elasticnet12345/classification-year-of-anime/tree/master/crawler">以前に作ったスクリプト</a>で試してみてね.
-あとyahoo検索でアニメの名前を検索するより, pixivをクローリングしたほうが良質な画像が得られることが最近わかった.
-<a href="http://www.mathgram.xyz/entry/scraping/pixiv">ココ</a>を参考にして!
-データの公開が恐らくダメだと思うので自分でやってください.
 
 ## 顔画像の抽出
 画像から顔領域のみを抽出します.
