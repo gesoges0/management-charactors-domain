@@ -49,7 +49,7 @@ GUIの操作が時間がかかるため途中でGUIを終了しても起動ご�
 ```sh
 make_girl_kit
 └ data
-  └ dcgan_upload_directory
+  └ parts_directory
      ├ face_images 
      |    | hoge.png
      |    | fuga.png
